@@ -29,7 +29,7 @@ function Game:new(screenWidth, screenHeight, font_file, font_size)
         font = { font = font, width = fontWidth, height = fontHeight },
         screen = screen,
         camera = Camera:new(screen),
-        hero = Hero:new(),
+        hero = nil,
         villain = Villain:new(),
         terrain = terrain,
         renderer = Renderer:new()
@@ -67,6 +67,10 @@ function Game:load_level(level_path)
     end
 
     self.terrain:layerFromGrid(terrain)
+
+    self.hero = Hero:new({
+        x = player_start.x * self.font.width,
+        y = player_start.y * self.font.height})
 end
 
 return Game

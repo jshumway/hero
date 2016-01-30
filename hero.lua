@@ -3,11 +3,11 @@ local lives
 local Hero = {}
 Hero.__index = Hero
 
-function Hero:new()
+function Hero:new(inital_location)
     local newHero = {
         text = 'HERO',
-        x = 200, -- TODO(evan) set location based on diary text
-        y = 200,
+        x = inital_location.x, -- TODO(evan) set location based on diary text
+        y = inital_location.y,
         speed = 200,
         frozen = false
     }
