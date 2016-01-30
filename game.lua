@@ -1,3 +1,5 @@
+Terrain = require('terrain')
+
 local Game = {}
 
 function Game:new(screenWidth, screenHeight, font_file, font_size)
@@ -6,9 +8,19 @@ function Game:new(screenWidth, screenHeight, font_file, font_size)
     local fontWidth = font:getWidth("@")
     local fontHeight = font:getHeight()
 
+    -- Create terrain
+    local terrain = Terrain:new()
+    terrain:addType("wall", "X", false)
+    terrain:addType("floor", ".", true)
+    terrain:initLayer(
+        screenWidth / fontWidth,
+        screenHeight / fontHeight,
+        "floor")
+
     newObj = {
         font = { font = font, width = fontWidth, height = fontHeight },
-        screen = { width = screenWidth, height = screenHeight }
+        screen = { width = screenWidth, height = screenHeight },
+        terrain = terrain
     }
 
     self.__index = self

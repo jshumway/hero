@@ -5,7 +5,9 @@ function Terrain:new()
         -- Types of tiles in the world
         types = {},
         -- The tiles in the world, organized width then height
-        layer = {}
+        layer = {},
+        width = 0,
+        height = 0
     }
 
     self.__index = self
@@ -13,14 +15,18 @@ function Terrain:new()
 end
 
 function Terrain:addType(name, repr, passable)
-    self.types.name = { repr = repr, passable = passable }
+    self.types[name] = { repr = repr, passable = passable }
 end
 
 function Terrain:initLayer(width, height, terainType)
+    self.width = width
+    self.height = height
+
     local ttype = self.types[terrainType]
-    for w in 0, width do
+
+    for w = 0, width do
         self.layer[w] = {}
-        for h in 0, height do
+        for h = 0, height do
             self.layer[w][h] = ttype
         end
     end
