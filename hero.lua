@@ -26,23 +26,24 @@ function Hero:move(dt)
     local xMag = 0
     local yMag = 0
 
-    if love.keyboard.isDown('w') or love.keyboard.isDown('up') then
-        yMag = yMag + 1
-    end
-    if love.keyboard.isDown('s') or love.keyboard.isDown('down') then
+    if love.keyboard.isDown('w', 'up') then
         yMag = yMag - 1
     end
-    if love.keyboard.isDown('a') or love.keyboard.isDown('left') then
+    if love.keyboard.isDown('s', 'down') then
+        yMag = yMag + 1
+    end
+    if love.keyboard.isDown('a', 'left') then
         xMag = xMag - 1
     end
-    if love.keyboard.isDown('d') or love.keyboard.isDown('right') then
+    if love.keyboard.isDown('d', 'right') then
         xMag = xMag + 1
     end
 
-    xMag, yMag = vector.normalize(xMag, yMag)
-
-    self.x = self.x + (self.speed * xMag)
-    self.x = self.y + (self.speed * yMag)
+    if xMag ~= 0 or yMag ~= 0 then
+        xMag, yMag = vector.normalize(xMag, yMag)
+        self.x = self.x + (self.speed * xMag * dt)
+        self.y = self.y + (self.speed * yMag * dt)
+    end
 end
 
 function Hero:freeze()
