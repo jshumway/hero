@@ -13,8 +13,8 @@ function Game:new(screenWidth, screenHeight, font_file, font_size)
     terrain:addType("wall", "X", false)
     terrain:addType("floor", ".", true)
     terrain:initLayer(
-        screenWidth / fontWidth,
-        screenHeight / fontHeight,
+        math.floor(screenWidth / fontWidth),
+        math.floor(screenHeight / fontHeight),
         "floor")
 
     newObj = {
