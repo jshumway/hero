@@ -23,6 +23,7 @@ function love.update(dt)
     end
 
     Game.hero:update(dt)
+    Game.physics.update(Game, dt)
     Game.camera:update(Game.hero)
 end
 

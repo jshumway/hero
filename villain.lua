@@ -5,8 +5,9 @@ local Villain = {}
 function Villain:new()
     local newVillain = {
         text = 'VILLAIN',
-        x = 650, -- TODO(evan) set location based on diary text
-        y = 450,
+
+        -- TODO(evan) set location based on diary text
+        pos = { x = 650, y = 650 },
         speed = 0,
         frozen = false
     }

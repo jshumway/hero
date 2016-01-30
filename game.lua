@@ -4,6 +4,7 @@ local Terrain = require('terrain')
 local Renderer = require('renderer')
 local Villain = require('villain')
 local it = require('it')
+local physics = require('physics')
 
 local Game = {}
 Game.__index = Game
@@ -34,7 +35,8 @@ function Game:new(gridWidth, gridHeight, font_file, font_size)
         hero = nil,
         villain = Villain:new(),
         terrain = terrain,
-        renderer = Renderer:new()
+        renderer = Renderer:new(),
+        physics = physics
     }
 
     return setmetatable(newObj, self)

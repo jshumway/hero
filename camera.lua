@@ -19,8 +19,8 @@ function Camera:new(screen)
 end
 
 function Camera:update(hero)
-    local x = hero.x - self.WIDTH_2
-    local y = hero.y - self.HEIGHT_2
+    local x = hero.pos.x - self.WIDTH_2
+    local y = hero.pos.y - self.HEIGHT_2
     self:setPosition(x, y)
 end
 

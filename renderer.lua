@@ -1,6 +1,8 @@
 local Renderer = {}
 
--- TODO: does the renderer need state?
+local function render_actor(actor, color)
+    love.graphics.print({color, actor.text}, actor.pos.x, actor.pos.y)
+end
 
 function Renderer:new()
     local newObj = {}
@@ -9,8 +11,6 @@ function Renderer:new()
 end
 
 function Renderer:render(game)
-    -- assume there is no camera for now
-
     -- render terrain
     for w, h, tile in game.terrain:iter() do
         -- Terrain keeps the world one-indexed, shift w, h to be zero-indexed.
@@ -21,14 +21,15 @@ function Renderer:render(game)
             (h - 1) * (game.font.height + 1))
     end
 
-    -- render hero
-    love.graphics.setColor(255,0,0) --red base "HERO" to track lives
-    love.graphics.print('HERO', game.hero.x, game.hero.y)
-    love.graphics.print('VILLAIN', game.villain.x, game.villain.y)
-    love.graphics.setColor(0,255,0) --green letters on top to show how many lives there are left
-    love.graphics.print(game.hero.text, game.hero.x, game.hero.y)
-    love.graphics.setColor(255,255,255) --set back to white for the dots
-    love.graphics.print(game.villain.text, game.villain.x, game.villain.y)
+    -- render actors
+    local red = {255, 0, 0}
+    local green = {0, 255, 0}
+
+    -- render hero; green letters on top to show how many lives there are left
+    render_actor(game.hero, red)
+    render_actor(game.hero, green)
+
+    render_actor(game.villain, red)
 end
 
 return Renderer
