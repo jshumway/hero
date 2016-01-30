@@ -1,17 +1,17 @@
 local vector = require('vector')
 local lives
 local Hero = {}
+Hero.__index = Hero
 
 function Hero:new()
     local newHero = {
         text = 'HERO',
         x = 200, -- TODO(evan) set location based on diary text
         y = 200,
-        speed = 150,
+        speed = 200,
         frozen = false
     }
     lives = 4
-    self.__index = self
     return setmetatable(newHero, self)
 end
 

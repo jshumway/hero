@@ -1,8 +1,10 @@
+local Camera = require('camera')
 local Hero = require('hero')
 local Terrain = require('terrain')
 local Renderer = require('renderer')
 
 local Game = {}
+Game.__index = Game
 
 function Game:new(screenWidth, screenHeight, font_file, font_size)
     local min_frame_time = 1/60
@@ -21,16 +23,18 @@ function Game:new(screenWidth, screenHeight, font_file, font_size)
         math.floor(screenHeight / fontHeight),
         "floor")
 
+    local screen = { width = screenWidth, height = screenHeight }
+
     local newObj = {
         config = { min_frame_time = min_frame_time },
         font = { font = font, width = fontWidth, height = fontHeight },
-        screen = { width = screenWidth, height = screenHeight },
+        screen = screen,
+        camera = Camera:new(screen),
         hero = Hero:new(),
         terrain = terrain,
         renderer = Renderer:new()
     }
 
-    self.__index = self
     return setmetatable(newObj, self)
 end
 

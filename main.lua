@@ -25,10 +25,15 @@ function love.update(dt)
     end
 
     Game.hero:update(dt)
+    Game.camera:update(Game.hero)
 end
 
 function love.draw()
+    Game.camera:set()
+
     Game.renderer:render(Game)
+
+    Game.camera:unset()
 
     enforce_min_frame_time()
 end
