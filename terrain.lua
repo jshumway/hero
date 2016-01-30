@@ -1,7 +1,7 @@
 local Terrain = {}
 
 function Terrain:new()
-    newObj = {
+    local newObj = {
         -- Types of tiles in the world
         types = {},
         -- The tiles in the world, organized width then height

@@ -1,6 +1,6 @@
-Hero = require('hero')
-Terrain = require('terrain')
-Renderer = require('renderer')
+local Hero = require('hero')
+local Terrain = require('terrain')
+local Renderer = require('renderer')
 
 local Game = {}
 
@@ -21,7 +21,7 @@ function Game:new(screenWidth, screenHeight, font_file, font_size)
         math.floor(screenHeight / fontHeight),
         "floor")
 
-    newObj = {
+    local newObj = {
         config = { min_frame_time = min_frame_time },
         font = { font = font, width = fontWidth, height = fontHeight },
         screen = { width = screenWidth, height = screenHeight },

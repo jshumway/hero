@@ -1,37 +1,31 @@
-Game = require('game')
-
-GlobalGame = Game:new(800, 600, "resources/SourceCodePro-Medium.ttf", 14)
+local Game = require('game'):new(800, 600, "resources/SourceCodePro-Medium.ttf", 14)
+local next_time
 
 -- Configuration
 function love.conf(t)
     t.title = "Hero Game"
-    t.window.width = GlobalGame.screen.width
-    t.window.height = GlobalGame.screen.height
+    t.window.width = Game.screen.width
+    t.window.height = Game.screen.height
 end
 
 function love.load()
-    local game = GlobalGame
-
-    love.graphics.setFont(game.font.font)
+    love.graphics.setFont(Game.font.font)
     next_time = love.timer.getTime()
 end
 
 function love.update(dt)
-    local game = GlobalGame
-    next_time = next_time + game.config.min_frame_time
+    next_time = next_time + Game.config.min_frame_time
 
     -- Exit the game with escape
     if love.keyboard.isDown('escape') then
         love.event.push('quit')
     end
 
-    game.hero:update(dt)
+    Game.hero:update(dt)
 end
 
 function love.draw()
-    local game = GlobalGame
-
-    game.renderer:render(game)
+    Game.renderer:render(Game)
 
     enforce_min_frame_time()
 end

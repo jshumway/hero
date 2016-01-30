@@ -3,7 +3,7 @@ local vector = require('vector')
 local Hero = {}
 
 function Hero:new()
-    newHero = {
+    local newHero = {
         text = 'hero',
         x = 200, -- TODO(evan) set location based on diary text
         y = 200,

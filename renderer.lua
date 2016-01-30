@@ -3,7 +3,7 @@ local Renderer = {}
 -- TODO: does the renderer need state?
 
 function Renderer:new()
-    newObj = {}
+    local newObj = {}
     self.__index = self
     return setmetatable(newObj, self)
 end
