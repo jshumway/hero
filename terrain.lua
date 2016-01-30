@@ -7,6 +7,7 @@ function Terrain:new()
         -- The tiles in the world, organized width then height
         layer = {}
     }
+
     self.__index = self
     return setmetatable(newObj, self)
 end
