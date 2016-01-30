@@ -1,6 +1,7 @@
 local Hero = require('hero')
 local Terrain = require('terrain')
 local Renderer = require('renderer')
+local Villain = require('villain')
 
 local Game = {}
 
@@ -26,6 +27,7 @@ function Game:new(screenWidth, screenHeight, font_file, font_size)
         font = { font = font, width = fontWidth, height = fontHeight },
         screen = { width = screenWidth, height = screenHeight },
         hero = Hero:new(),
+        villain = Villain:new(),
         terrain = terrain,
         renderer = Renderer:new()
     }
