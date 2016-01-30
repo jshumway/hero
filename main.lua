@@ -27,8 +27,5 @@ end
 function love.draw()
     local game = GlobalGame
 
-    love.graphics.print('this is maggies change', 400, 300)
-
-    love.graphics.print('width: ' .. game.font.width .. ' height: ' ..
-        game.font.height, 400, 400)
+    game.renderer:render(game)
 end

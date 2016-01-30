@@ -1,4 +1,5 @@
 Terrain = require('terrain')
+Renderer = require('renderer')
 
 local Game = {}
 
@@ -20,7 +21,8 @@ function Game:new(screenWidth, screenHeight, font_file, font_size)
     newObj = {
         font = { font = font, width = fontWidth, height = fontHeight },
         screen = { width = screenWidth, height = screenHeight },
-        terrain = terrain
+        terrain = terrain,
+        renderer = Renderer:new()
     }
 
     self.__index = self

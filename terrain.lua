@@ -33,4 +33,28 @@ function Terrain:initLayer(width, height, terrainType)
     end
 end
 
+function Terrain:iter()
+    local layer = self.layer
+
+    local w = 0
+    local h = -1
+    local maxw = self.width
+    local maxh = self.height
+
+    return function()
+        h = h + 1
+
+        if h >= maxh then
+            h = 0
+            w = w + 1
+        end
+
+        if w >= maxw then
+            return nil
+        end
+
+        return w, h, layer[w][h]
+    end
+end
+
 return Terrain
