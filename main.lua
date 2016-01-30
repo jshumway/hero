@@ -1,7 +1,3 @@
-Game = {
-    font = { font = nil, width = 0, height = 0 }
-}
-
 -- Configuration
 function love.conf(t)
     t.title = "Hero Game"
@@ -10,16 +6,8 @@ function love.conf(t)
 end
 
 function love.load()
-    load_font()
-end
-
-function load_font()
-    local font = love.graphics.newFont("resources/SourceCodePro-Medium.ttf", 14)
-    love.graphics.setFont(font)
-    local width = font:getWidth("@")
-    local height = font:getHeight()
-
-    Game.font = {font = font, width = width, height = height }
+    Game = require('game')
+    Game:load_font("resources/SourceCodePro-Medium.ttf", 14)
 end
 
 function love.update(dt)
