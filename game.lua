@@ -27,7 +27,4 @@ function Game:new(screenWidth, screenHeight, font_file, font_size)
     return setmetatable(newObj, self)
 end
 
-function Game:load_font(filename, size)
-end
-
 return Game
