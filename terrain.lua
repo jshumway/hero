@@ -14,11 +14,18 @@ function Terrain:new()
     return setmetatable(newObj, self)
 end
 
-function Terrain:addType(name, repr, passable)
-    self.types[name] = { repr = repr, passable = passable }
+function Terrain:addType(name, glyph, passable)
+    self.types[name] = { glyph = glyph, passable = passable }
 end
 
-function Terrain:initLayer(width, height, terrainType)
+function Terrain:getType(glyph)
+    for name, ttype in pairs(self.types) do
+        if glyph == ttype.glyph then return name end
+    end
+end
+
+--[[ pretty sure this is broken now, because it is zero indexed
+function Terrain:layerFromTile(width, height, terrainType)
     self.width = width
     self.height = height
 
@@ -32,24 +39,40 @@ function Terrain:initLayer(width, height, terrainType)
         end
     end
 end
+]]--
+
+function Terrain:layerFromGrid(tiles)
+    self.layer = {}
+
+    -- Load the terrain layer from a 2d grid of names
+    for w, col in ipairs(tiles) do
+        self.layer[w] = {}
+        for h, name in ipairs(col) do
+            self.layer[w][h] = self.types[name]
+        end
+    end
+
+    self.width = table.getn(self.layer)
+    self.height = table.getn(self.layer[1])
+end
 
 function Terrain:iter()
     local layer = self.layer
 
-    local w = 0
-    local h = -1
+    local w = 1
+    local h = 0
     local maxw = self.width
     local maxh = self.height
 
     return function()
         h = h + 1
 
-        if h >= maxh then
-            h = 0
+        if h > maxh then
+            h = 1
             w = w + 1
         end
 
-        if w >= maxw then
+        if w > maxw then
             return nil
         end
 

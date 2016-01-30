@@ -13,7 +13,12 @@ function Renderer:render(game)
 
     -- render terrain
     for w, h, tile in game.terrain:iter() do
-        love.graphics.print(tile.repr, w * game.font.width, h * game.font.height)
+        -- Terrain keeps the world one-indexed, shift w, h to be zero-indexed.
+        love.graphics.print(
+            tile.glyph,
+            -- TODO: add line height/width modifications elsewhere?
+            (w - 1) * (game.font.width + 1),
+            (h - 1) * (game.font.height + 1))
     end
 
     -- render hero

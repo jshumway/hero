@@ -11,6 +11,9 @@ end
 
 function love.load()
     love.graphics.setFont(Game.font.font)
+
+    Game:load_level('data/levels/demo/terrain.lvl')
+
     next_time = love.timer.getTime()
     level = 0
 
