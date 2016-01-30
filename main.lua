@@ -13,10 +13,12 @@ function love.load()
     local game = GlobalGame
 
     love.graphics.setFont(game.font.font)
+    next_time = love.timer.getMicroTime()
 end
 
 function love.update(dt)
     local game = GlobalGame
+    next_time = next_time + game.config.min_frame_time
 
     -- Exit the game with escape
     if love.keyboard.isDown('escape') then
@@ -30,4 +32,12 @@ function love.draw()
     local game = GlobalGame
 
     game.renderer:render(game)
+
+    local cur_time = love.timer.getMicroTime()
+    if next_time <= cur_time then
+        next_time = cur_time
+        return
+    end
+    love_timer_sleep(next_time - cur_time)
+
 end

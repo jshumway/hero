@@ -5,6 +5,8 @@ Renderer = require('renderer')
 local Game = {}
 
 function Game:new(screenWidth, screenHeight, font_file, font_size)
+    local min_frame_time = 1/60
+
     -- Load & config font
     local font = love.graphics.newFont(font_file, size)
     local fontWidth = font:getWidth("@")
@@ -20,6 +22,7 @@ function Game:new(screenWidth, screenHeight, font_file, font_size)
         "floor")
 
     newObj = {
+        config = { min_frame_time = min_frame_time },
         font = { font = font, width = fontWidth, height = fontHeight },
         screen = { width = screenWidth, height = screenHeight },
         hero = Hero:new(),
