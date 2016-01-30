@@ -8,7 +8,7 @@ function Game:new(screenWidth, screenHeight, font_file, font_size)
     local min_frame_time = 1/60
 
     -- Load & config font
-    local font = love.graphics.newFont(font_file, size)
+    local font = love.graphics.newFont(font_file, font_size)
     local fontWidth = font:getWidth("@")
     local fontHeight = font:getHeight()
 

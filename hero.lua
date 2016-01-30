@@ -1,15 +1,16 @@
 local vector = require('vector')
-
+local lives
 local Hero = {}
 
 function Hero:new()
     local newHero = {
-        text = 'hero',
+        text = 'HERO',
         x = 200, -- TODO(evan) set location based on diary text
         y = 200,
         speed = 150,
         frozen = false
     }
+    lives = 4
     self.__index = self
     return setmetatable(newHero, self)
 end
@@ -52,6 +53,16 @@ end
 
 function Hero:unfreeze()
     self.frozen = false
+end
+
+function Hero:loseLife()
+   lives = lives - 1
+   if (lives == 1) then hero.text = 'H'
+   end
+   if (lives == 2) then hero.text = 'HE'
+   end
+   if (lives == 3) then hero.text = 'HER'
+   end
 end
 
 return Hero

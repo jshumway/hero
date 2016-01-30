@@ -1,5 +1,6 @@
-local Game = require('game'):new(800, 600, "resources/SourceCodePro-Medium.ttf", 14)
+local Game = require('game'):new(800, 600, "resources/PTM55FT.ttf", 22)
 local next_time
+local level
 
 -- Configuration
 function love.conf(t)
@@ -11,6 +12,8 @@ end
 function love.load()
     love.graphics.setFont(Game.font.font)
     next_time = love.timer.getTime()
+    level = 0
+
 end
 
 function love.update(dt)
