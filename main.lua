@@ -33,11 +33,14 @@ function love.draw()
 
     game.renderer:render(game)
 
+    enforce_min_frame_time()
+end
+
+function enforce_min_frame_time()
     local cur_time = love.timer.getMicroTime()
     if next_time <= cur_time then
         next_time = cur_time
         return
     end
     love_timer_sleep(next_time - cur_time)
-
 end
