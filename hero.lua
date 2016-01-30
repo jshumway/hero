@@ -9,7 +9,7 @@ function Hero:new(initial_location)
 
         -- Physics components
         -- TODO(evan) set location based on diary text
-        pos = inital_location,
+        pos = initial_location,
         dir = { x = 0, y = 0 },
         speed = 200,
 
