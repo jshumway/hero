@@ -1,8 +1,13 @@
 local Game = {}
 
-function Game:new(screenWidth, screenHeight)
+function Game:new(screenWidth, screenHeight, font_file, font_size)
+    -- Load & config font
+    local font = love.graphics.newFont(filename, size)
+    local fontWidth = font:getWidth("@")
+    local fontHeight = font:getHeight()
+
     newObj = {
-        font = { font = nil, width = 0, height = 0 },
+        font = { font = font, width = fontWidth, height = fontHeight },
         screen = { width = screenWidth, height = screenHeight }
     }
 
@@ -11,12 +16,6 @@ function Game:new(screenWidth, screenHeight)
 end
 
 function Game:load_font(filename, size)
-    local font = love.graphics.newFont(filename, size)
-    love.graphics.setFont(font)
-    local width = font:getWidth("@")
-    local height = font:getHeight()
-
-    self.font = { font = font, width = width, height = height }
 end
 
 return Game

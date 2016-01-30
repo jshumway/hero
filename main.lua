@@ -1,6 +1,6 @@
 Game = require('game')
 
-GlobalGame = Game:new(800, 600)
+GlobalGame = Game:new(800, 600, "resources/SourceCodePro-Medium.ttf", 14)
 
 -- Configuration
 function love.conf(t)
@@ -12,7 +12,7 @@ end
 function love.load()
     local game = GlobalGame
 
-    game:load_font("resources/SourceCodePro-Medium.ttf", 14)
+    love.graphics.setFont(game.font.font)
 end
 
 function love.update(dt)
