@@ -1,3 +1,4 @@
+Hero = require('hero')
 Terrain = require('terrain')
 
 local Game = {}
@@ -20,6 +21,7 @@ function Game:new(screenWidth, screenHeight, font_file, font_size)
     newObj = {
         font = { font = font, width = fontWidth, height = fontHeight },
         screen = { width = screenWidth, height = screenHeight },
+        hero = Hero:new(),
         terrain = terrain
     }
 

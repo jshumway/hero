@@ -22,13 +22,16 @@ function love.update(dt)
     if love.keyboard.isDown('escape') then
         love.event.push('quit')
     end
+
+    game.hero:update(dt)
 end
 
 function love.draw()
     local game = GlobalGame
 
-    love.graphics.print('this is maggies change', 400, 300)
-
     love.graphics.print('width: ' .. game.font.width .. ' height: ' ..
         game.font.height, 400, 400)
+
+    -- TODO(evan) Move this to the Renderer
+    love.graphics.print(game.hero.text, game.hero.x, game.hero.y)
 end
