@@ -1,3 +1,5 @@
+local vector = require('vector')
+
 local Hero = {}
 
 function Hero:new()
@@ -21,22 +23,26 @@ function Hero:move(dt)
         return
     end
 
-    if love.keyboard.isDown('w') then
-        -- move up
-        self.y = self.y - (self.speed * dt)
+    local xMag = 0
+    local yMag = 0
+
+    if love.keyboard.isDown('w') or love.keyboard.isDown('up') then
+        yMag = yMag + 1
     end
-    if love.keyboard.isDown('s') then
-        -- move down
-        self.y = self.y + (self.speed * dt)
+    if love.keyboard.isDown('s') or love.keyboard.isDown('down') then
+        yMag = yMag - 1
     end
-    if love.keyboard.isDown('a') then
-        -- move left
-        self.x = self.x - (self.speed * dt)
+    if love.keyboard.isDown('a') or love.keyboard.isDown('left') then
+        xMag = xMag - 1
     end
-    if love.keyboard.isDown('d') then
-        -- move right
-        self.x = self.x + (self.speed * dt)
+    if love.keyboard.isDown('d') or love.keyboard.isDown('right') then
+        xMag = xMag + 1
     end
+
+    xMag, yMag = vector.normalize(xMag, yMag)
+
+    self.x = self.x + (self.speed * xMag)
+    self.x = self.y + (self.speed * yMag)
 end
 
 function Hero:freeze()
