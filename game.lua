@@ -2,6 +2,7 @@ local Camera = require('camera')
 local Hero = require('hero')
 local Terrain = require('terrain')
 local Renderer = require('renderer')
+local Villain = require('villain')
 
 local Game = {}
 Game.__index = Game
@@ -31,6 +32,7 @@ function Game:new(screenWidth, screenHeight, font_file, font_size)
         screen = screen,
         camera = Camera:new(screen),
         hero = Hero:new(),
+        villain = Villain:new(),
         terrain = terrain,
         renderer = Renderer:new()
     }

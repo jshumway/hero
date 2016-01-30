@@ -19,9 +19,11 @@ function Renderer:render(game)
     -- render hero
     love.graphics.setColor(255,0,0) --red base "HERO" to track lives
     love.graphics.print('HERO', game.hero.x, game.hero.y)
+    love.graphics.print('VILLAIN', game.villain.x, game.villain.y)
     love.graphics.setColor(0,255,0) --green letters on top to show how many lives there are left
     love.graphics.print(game.hero.text, game.hero.x, game.hero.y)
     love.graphics.setColor(255,255,255) --set back to white for the dots
+    love.graphics.print(game.villain.text, game.villain.x, game.villain.y)
 end
 
 return Renderer
