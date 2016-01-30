@@ -8,7 +8,7 @@ local it = require('it')
 local Game = {}
 Game.__index = Game
 
-function Game:new(screenWidth, screenHeight, font_file, font_size)
+function Game:new(gridWidth, gridHeight, font_file, font_size)
     local min_frame_time = 1/60
 
     -- Load & config font
@@ -22,7 +22,9 @@ function Game:new(screenWidth, screenHeight, font_file, font_size)
     terrain:addType("wall", "#", false)
     terrain:addType("floor", ".", true)
 
-    local screen = { width = screenWidth, height = screenHeight }
+    local screen = {
+        width = gridWidth * fontWidth,
+        height = gridHeight * fontHeight }
 
     local newObj = {
         config = { min_frame_time = min_frame_time },

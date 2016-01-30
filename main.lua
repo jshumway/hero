@@ -1,15 +1,10 @@
-local Game = require('game'):new(800, 600, "resources/PTM55FT.ttf", 22)
+local Game = require('game'):new(64, 24, "resources/PTM55FT.ttf", 22)
 local next_time
 local level
 
--- Configuration
-function love.conf(t)
-    t.title = "Hero Game"
-    t.window.width = Game.screen.width
-    t.window.height = Game.screen.height
-end
-
 function love.load()
+    love.window.setMode(Game.screen.width, Game.screen.height)
+
     love.graphics.setFont(Game.font.font)
 
     Game:load_level('data/levels/demo/terrain.lvl')
