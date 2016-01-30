@@ -2,7 +2,7 @@ local Game = {}
 
 function Game:new(screenWidth, screenHeight, font_file, font_size)
     -- Load & config font
-    local font = love.graphics.newFont(filename, size)
+    local font = love.graphics.newFont(font_file, size)
     local fontWidth = font:getWidth("@")
     local fontHeight = font:getHeight()
 
