@@ -18,11 +18,12 @@ function Terrain:addType(name, repr, passable)
     self.types[name] = { repr = repr, passable = passable }
 end
 
-function Terrain:initLayer(width, height, terainType)
+function Terrain:initLayer(width, height, terrainType)
     self.width = width
     self.height = height
 
-    local ttype = self.types[terrainType]
+    local ttype = assert(self.types[terrainType],
+        "invalid terrain tile name: " .. (terrainType or 'nil'))
 
     for w = 0, width do
         self.layer[w] = {}
