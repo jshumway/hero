@@ -42,5 +42,5 @@ function enforce_min_frame_time()
         next_time = cur_time
         return
     end
-    love_timer_sleep(next_time - cur_time)
+    love.timer.sleep(next_time - cur_time)
 end
