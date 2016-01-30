@@ -29,9 +29,5 @@ end
 function love.draw()
     local game = GlobalGame
 
-    love.graphics.print('width: ' .. game.font.width .. ' height: ' ..
-        game.font.height, 400, 400)
-
-    -- TODO(evan) Move this to the Renderer
-    love.graphics.print(game.hero.text, game.hero.x, game.hero.y)
+    game.renderer:render(game)
 end

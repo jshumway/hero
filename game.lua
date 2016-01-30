@@ -1,5 +1,6 @@
 Hero = require('hero')
 Terrain = require('terrain')
+Renderer = require('renderer')
 
 local Game = {}
 
@@ -14,22 +15,20 @@ function Game:new(screenWidth, screenHeight, font_file, font_size)
     terrain:addType("wall", "X", false)
     terrain:addType("floor", ".", true)
     terrain:initLayer(
-        screenWidth / fontWidth,
-        screenHeight / fontHeight,
+        math.floor(screenWidth / fontWidth),
+        math.floor(screenHeight / fontHeight),
         "floor")
 
     newObj = {
         font = { font = font, width = fontWidth, height = fontHeight },
         screen = { width = screenWidth, height = screenHeight },
         hero = Hero:new(),
-        terrain = terrain
+        terrain = terrain,
+        renderer = Renderer:new()
     }
 
     self.__index = self
     return setmetatable(newObj, self)
-end
-
-function Game:load_font(filename, size)
 end
 
 return Game
