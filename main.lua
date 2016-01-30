@@ -13,7 +13,7 @@ function love.load()
     local game = GlobalGame
 
     love.graphics.setFont(game.font.font)
-    next_time = love.timer.getMicroTime()
+    next_time = love.timer.getTime()
 end
 
 function love.update(dt)
@@ -37,7 +37,7 @@ function love.draw()
 end
 
 function enforce_min_frame_time()
-    local cur_time = love.timer.getMicroTime()
+    local cur_time = love.timer.getTime()
     if next_time <= cur_time then
         next_time = cur_time
         return
