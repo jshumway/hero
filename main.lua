@@ -4,7 +4,7 @@ Game = {
 
 -- Configuration
 function love.conf(t)
-    t.title = "Scrolling Shooter Tutorial"
+    t.title = "Hero Game"
     t.window.width = 800
     t.window.height = 600
 end
