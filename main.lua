@@ -1,3 +1,7 @@
+Game = {
+    font = { font = nil, width = 0, height = 0 }
+}
+
 -- Configuration
 function love.conf(t)
     t.title = "Scrolling Shooter Tutorial"
@@ -6,8 +10,16 @@ function love.conf(t)
 end
 
 function love.load()
-    mainFont = love.graphics.newFont("resources/SourceCodePro-Medium.ttf", 20);
-    love.graphics.setFont(mainFont)
+    load_font()
+end
+
+function load_font()
+    local font = love.graphics.newFont("resources/SourceCodePro-Medium.ttf", 14)
+    love.graphics.setFont(font)
+    local width = font:getWidth("@")
+    local height = font:getHeight()
+
+    Game.font = {font = font, width = width, height = height }
 end
 
 function love.update(dt)
@@ -20,8 +32,6 @@ end
 function love.draw()
     love.graphics.print('this is maggies change', 400, 300)
 
-    local fontWidth = mainFont:getWidth("@")
-    local fontHeight = mainFont:getHeight()
-
-    love.graphics.print('width: ' .. fontWidth .. ' height: ' .. fontHeight, 400, 400)
+    love.graphics.print('width: ' .. Game.font.width .. ' height: ' ..
+        Game.font.height, 400, 400)
 end
