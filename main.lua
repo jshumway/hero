@@ -20,6 +20,8 @@ function love.load()
 
     Game.textbox:write("The darkness is weighing in on you  .  .  .")
 
+    love.audio.newSource("resources/Game_Over.mp3"):play()
+
 end
 
 function love.update(dt)
