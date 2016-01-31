@@ -61,8 +61,8 @@ function Textbox:draw(game)
     end
 
     local relativeOrigin =  {
-        x = game.hero.pos.x - (game.screen.width / 2),
-        y = game.hero.pos.y - (game.screen.height / 2)
+        x = game.camera.x,
+        y = game.camera.y
     }
     local borderWidth = .5 * game.font.width
     local leftMargin = relativeOrigin.x + 2 * game.font.width
