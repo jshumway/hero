@@ -38,6 +38,9 @@ function Renderer:render(game)
         fn()
     end
     DebugUtil.queue = {}
+
+    -- render the textbox UI
+    game.textbox:draw(game)
 end
 
 return Renderer

@@ -1,6 +1,7 @@
 local Camera = require('camera')
 local Hero = require('hero')
 local Terrain = require('terrain')
+local Textbox = require('textbox')
 local Renderer = require('renderer')
 local Villain = require('villain')
 local it = require('it')
@@ -35,6 +36,7 @@ function Game:new(gridWidth, gridHeight, font_file, font_size)
         hero = nil,
         villain = Villain:new(),
         terrain = terrain,
+        textbox = Textbox:new(),
         renderer = Renderer:new(),
         physics = physics
     }

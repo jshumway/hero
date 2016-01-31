@@ -14,6 +14,8 @@ function love.load()
     next_time = love.timer.getTime()
     level = 0
 
+    Game.textbox:write("Hello how are you I'm great thanks for asking woooooooo")
+
 end
 
 function love.update(dt)
@@ -26,6 +28,7 @@ function love.update(dt)
 
     Game.hero:update(dt)
     Game.physics.update(Game, dt)
+    Game.textbox:update(dt)
     Game.camera:update(Game.hero)
 end
 
