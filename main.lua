@@ -1,6 +1,7 @@
 require('debug_util')
 
 local Game = require('game'):new(64, 24, "resources/PTM55FT.ttf", 22)
+local shader = require('shader')
 local next_time
 local level
 
@@ -12,6 +13,8 @@ function love.load()
 
     Game:load_level('data/levels/demo')
 
+    shader.init(Game)
+
     next_time = love.timer.getTime()
     level = 0
 
@@ -20,6 +23,7 @@ function love.load()
 end
 
 function love.update(dt)
+    Game.elapsed_time = Game.elapsed_time + dt
     next_time = next_time + Game.config.min_frame_time
 
     -- Exit the game with escape

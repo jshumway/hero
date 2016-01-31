@@ -1,3 +1,5 @@
+local shader = require('shader')
+
 local Renderer = {}
 
 local function render_actor(actor, color)
@@ -13,6 +15,9 @@ end
 function Renderer:render(game)
     local function fg_x(x) return x * game.font.width end
     local function fg_y(y) return y * game.font.height end
+
+    -- Enable the shader before drawing anything.
+    shader.lights(game)
 
     -- render terrain
     for w, h, tile in game.terrain:iter() do
@@ -47,6 +52,9 @@ function Renderer:render(game)
         fn()
     end
     DebugUtil.queue = {}
+
+    -- turn off the shader before rendering UI
+    shader.disable()
 
     -- render the textbox UI
     game.textbox:draw(game)

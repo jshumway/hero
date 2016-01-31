@@ -26,6 +26,7 @@ function Game:new(gridWidth, gridHeight, font_file, font_size)
 
     local newObj = {
         config = { min_frame_time = min_frame_time },
+        elapsed_time = 0,
         font = { font = font, width = fontWidth, height = fontHeight },
         screen = screen,
         camera = Camera:new(screen),
