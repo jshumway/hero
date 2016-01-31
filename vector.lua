@@ -17,4 +17,10 @@ function vector.add(a, b)
     return { x = a.x + b.x, y = a.y + b.y }
 end
 
+function vector.from_deg(deg)
+    -- Return a normalized vector of the angle given by |deg|
+    return vector.normalize({
+        x = math.cos(math.rad(deg)), y = -math.sin(math.rad(deg)) })
+end
+
 return vector

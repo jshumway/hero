@@ -8,8 +8,9 @@ function love.load()
     love.window.setMode(Game.screen.width, Game.screen.height)
 
     love.graphics.setFont(Game.font.font)
+    DebugUtil:set_grid(Game.font.width, Game.font.height)
 
-    Game:load_level('data/levels/demo/terrain.lvl')
+    Game:load_level('data/levels/demo')
 
     next_time = love.timer.getTime()
     level = 0
@@ -26,10 +27,7 @@ function love.update(dt)
         love.event.push('quit')
     end
 
-    Game.hero:update(dt)
-    Game.physics.update(Game, dt)
-    Game.textbox:update(dt)
-    Game.camera:update(Game.hero)
+    Game:update(dt)
 end
 
 function love.draw()

@@ -3,7 +3,7 @@ local physics = {}
 local vector = require('vector')
 local it = require('it')
 
-local function collides_with(game, ra, rb)
+local function collides_with(ra, rb)
     return ra.x < rb.x + rb.w and
         ra.x + ra.w > rb.x and
         ra.y < rb.y + rb.h and
@@ -56,7 +56,7 @@ local function update_actor(game, actor, dt)
         x = new_pos.x, y = new_pos.y, w = actor.width, h = actor.height }
 
     for i, tile in ipairs(potential_collisions(game, bound)) do
-        if collides_with(game, bound, {
+        if collides_with(bound, {
             x = tile.x * game.font.width, y = tile.y * game.font.height,
             w = game.font.width, h = game.font.height }) then
             return
@@ -67,8 +67,44 @@ local function update_actor(game, actor, dt)
     actor.pos = vector.add(actor.pos, velocity)
 end
 
+function update_bullets(game, bullets, dt)
+    local to_remove = {}
+    local hero = game.hero
+    local hero_bound = {
+        x = hero.pos.x, y = hero.pos.y, w = hero.width, h = hero.height }
+
+    for i, bullet in ipairs(bullets) do
+        local speed = bullet.speed * dt
+        local velocity = vector.scale(bullet.dir, speed)
+
+        local new_pos = vector.add(bullet.pos, velocity)
+        local bound = {
+            x = new_pos.x * game.font.width, y = new_pos.y * game.font.height,
+            w = game.font.width, h = game.font.height }
+
+        if collides_with(bound, hero_bound) then
+            print('DEATH')
+        end
+
+        for i, tile in ipairs(potential_collisions(game, bound)) do
+            if collides_with(bound, {
+                x = tile.x * game.font.width, y = tile.y * game.font.height,
+                w = game.font.width, h = game.font.height }) then
+                table.insert(to_remove, i)
+            end
+        end
+
+        bullet.pos = new_pos
+    end
+
+    for c, i in ipairs(to_remove) do
+        table.remove(game.objects.bullets, i - c + 1)
+    end
+end
+
 function physics.update(game, dt)
     update_actor(game, game.hero, dt)
+    update_bullets(game, game.objects.bullets, dt)
 end
 
 return physics
