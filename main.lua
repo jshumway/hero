@@ -18,7 +18,7 @@ function love.load()
     next_time = love.timer.getTime()
     level = 0
 
-    Game.textbox:write("Hello how are you I'm great thanks for asking woooooooo")
+    Game.textbox:write("The darkness is weighing in on you  .  .  .")
 
 end
 
