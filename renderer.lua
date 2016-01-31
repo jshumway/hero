@@ -34,7 +34,7 @@ function Renderer:render(game)
     render_actor(game.hero, red)
     render_actor(game.hero, green)
 
-    render_actor(game.villain, red)
+    -- render_actor(game.villain, red)
 
     -- render traps
     for _, trap in ipairs(game.objects.traps) do
