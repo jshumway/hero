@@ -32,6 +32,12 @@ function Renderer:render(game)
     render_actor(game.hero, green)
 
     render_actor(game.villain, red)
+
+    -- render debug information
+    for i, fn in ipairs(DebugUtil.queue) do
+        fn()
+    end
+    DebugUtil.queue = {}
 end
 
 return Renderer
