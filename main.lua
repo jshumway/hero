@@ -1,6 +1,6 @@
 require('debug_util')
 
-local Game = require('game'):new(64, 24, "resources/PTM55FT.ttf", 22)
+local Game = require('game'):new(64, 24, "resources/PTM55FT.ttf", 20)
 local shader = require('shader')
 local next_time
 local level
