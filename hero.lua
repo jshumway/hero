@@ -3,15 +3,19 @@ local vector = require('vector')
 local Hero = {}
 Hero.__index = Hero
 
-function Hero:new(initial_location)
+function Hero:new(initial_location, font)
+    local text = 'HERO'
+
     local newHero = {
-        text = 'HERO',
+        text = text,
 
         -- Physics components
         -- TODO(evan) set location based on diary text
         pos = initial_location,
         dir = { x = 0, y = 0 },
         speed = 200,
+        width = #text * font.width,
+        height = font.height,
 
         frozen = false,
         lives = 4

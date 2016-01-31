@@ -14,14 +14,18 @@ function Terrain:new()
     return setmetatable(newObj, self)
 end
 
-function Terrain:addType(name, glyph, passable)
-    self.types[name] = { glyph = glyph, passable = passable }
+function Terrain:addType(name, glyph, passable, visable)
+    self.types[name] = { glyph = glyph, passable = passable, visable = visable }
 end
 
 function Terrain:getType(glyph)
     for name, ttype in pairs(self.types) do
         if glyph == ttype.glyph then return name end
     end
+end
+
+function Terrain:get(point)
+    return self.layer[point.x][point.y]
 end
 
 --[[ pretty sure this is broken now, because it is zero indexed

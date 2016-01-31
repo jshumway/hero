@@ -20,8 +20,8 @@ function Game:new(gridWidth, gridHeight, font_file, font_size)
     -- Create terrain
     local terrain = Terrain:new()
     -- TODO: read in from data files
-    terrain:addType("wall", "#", false)
-    terrain:addType("floor", ".", true)
+    terrain:addType("wall", "#", false, true)
+    terrain:addType("floor", ".", true, false)
 
     local screen = {
         width = gridWidth * fontWidth,
@@ -74,7 +74,8 @@ function Game:load_level(level_path)
 
     self.hero = Hero:new({
         x = player_start.x * self.font.width,
-        y = player_start.y * self.font.height})
+        y = player_start.y * self.font.height},
+        self.font)
 end
 
 return Game
