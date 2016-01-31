@@ -13,7 +13,7 @@ end
 function Renderer:render(game)
     -- render terrain
     for w, h, tile in game.terrain:iter() do
-        if tile.visable then
+        if tile.visible then
             -- Terrain keeps the world one-indexed, shift w, h to be zero-indexed.
             love.graphics.print(
                 tile.glyph,

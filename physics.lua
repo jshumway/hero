@@ -31,7 +31,7 @@ local function potential_collisions(game, r)
 
     for w in it.range(topleft.x, bottomright.x) do
         for h in it.range(topleft.y, bottomright.y) do
-            local tile = game.terrain:get({ x = w, y = h })
+            local tile = game.terrain:getTile(w, h)
 
             if not tile.passable then
                 table.insert(targets, { x = w, y = h, tile = tile })

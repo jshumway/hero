@@ -18,12 +18,6 @@ function Game:new(gridWidth, gridHeight, font_file, font_size)
     local fontWidth = font:getWidth("@")
     local fontHeight = font:getHeight()
 
-    -- Create terrain
-    local terrain = Terrain:new()
-    -- TODO: read in from data files
-    terrain:addType("wall", "#", false, true)
-    terrain:addType("floor", ".", true, false)
-
     local screen = {
         width = gridWidth * fontWidth,
         height = gridHeight * fontHeight }
@@ -35,7 +29,7 @@ function Game:new(gridWidth, gridHeight, font_file, font_size)
         camera = Camera:new(screen),
         hero = nil,
         villain = Villain:new(),
-        terrain = terrain,
+        terrain = Terrain:new(),
         textbox = Textbox:new(),
         renderer = Renderer:new(),
         physics = physics
@@ -45,34 +39,33 @@ function Game:new(gridWidth, gridHeight, font_file, font_size)
 end
 
 function Game:load_level(level_path)
-    local terrain = {}
     local actors = {}
     local player_start = nil
 
     for h, line in it.enum(io.lines(level_path)) do
-
         for w in it.range(1, #line) do
-            if h == 1 then
-                terrain[w] = {}
-            end
-
             local c = line:sub(w, w)
-            local tname = "floor"
 
-            if c == 'A' then
-                table.insert(actors, {x = w, y = h})
-            elseif c == '@' then
+            if c == '@' then
                 player_start = {x = w, y = h}
-            else
-                tname = assert(self.terrain:getType(c),
-                    "glyph matches no terrain type: " .. c)
-            end
+                self.terrain:setTile(w, h, ' ', true, false)
 
-            terrain[w][h] = tname
+            -- TODO: add extra things here
+            elseif c == '=' then
+                -- bullet emitter
+                self.terrain:setTile(w, h, '=', false, true)
+
+            elseif c == '#' then
+                self.terrain:setTile(w, h, '#', false, true)
+
+            elseif c == ' ' then
+                self.terrain:setTile(w, h, ' ', true, false)
+
+            else
+                self.terrain:setTile(w, h, c, false, true)
+            end
         end
     end
-
-    self.terrain:layerFromGrid(terrain)
 
     self.hero = Hero:new({
         x = player_start.x * self.font.width,
